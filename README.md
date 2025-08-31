@@ -1,1 +1,1 @@
-# laravel_PDV
+Sistema de PDV em laravel
