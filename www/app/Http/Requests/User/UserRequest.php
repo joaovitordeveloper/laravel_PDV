@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class UserRequest extends FormRequest
+class UserRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -35,12 +36,13 @@ class UserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'O nome é obrigatório',
-            'email.required' => 'O email é obrigatório',
-            'email.email' => 'O email deve ser válido',
-            'email.unique' => 'Esse email já está cadastrado',
-            'password.required' => 'A senha é obrigatória',
-            'password.min' => 'A senha deve ter no mínimo 6 caracteres',
-        ];
+        'name.required' => 'O nome é obrigatório',
+        'name.min' => 'O nome deve ter no mínimo 5 caracteres',
+        'email.required' => 'O email é obrigatório',
+        'email.email' => 'O email deve ser válido',
+        'email.unique' => 'Esse email já está cadastrado',
+        'password.required' => 'A senha é obrigatória',
+        'password.min' => 'A senha deve ter no mínimo 6 caracteres',
+    ];
     }
 }

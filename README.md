@@ -103,3 +103,5 @@ No windowns quando subir o container do MySql precisamos usar os comando abaixo 
 ``ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 FLUSH PRIVILEGES;
 ``
+
+criar a chave de acesso php artisan key:generate

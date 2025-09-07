@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
+
 use App\Models\User;
+use App\Service\UserService;
 use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\User\UserRequest;
 
 class UserController extends Controller
 {
@@ -15,19 +18,20 @@ class UserController extends Controller
     }
 
     /**
+     * Undocumented function
      *
+     * @param UserRequest $request
+     * @return JsonResponse
      */
     public function create(UserRequest $request) :JsonResponse
     {
         try {
-            $data = $request->validated();
-            var_dump($data);exit;
             $user = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
             ]);
-
+//ajustar mensagem de retorno de uma forma mais generia para todos os controllers
             return response()->json([
                 'id' => $user->id,
                 'name' => $user->name,
