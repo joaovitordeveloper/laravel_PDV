@@ -1,4 +1,4 @@
-# Sobre o sistema
+# Instalação
 O sistema consiste em uma plataforma de gerenciamento de tarefas.
 
 Para utilizar a plataforma primeiro deve-se realizar um cadastro nela.
@@ -61,7 +61,7 @@ Segue abaixo a estrutura do arquivo.
 
 ![img_1.png](img_1.png)
 
-**Altere os dados do arquivo database.php para os dados da sua conexão**
+**Altere os dados do arquivo .env que está dentro de www para os dados da sua conexão**
 
 Com o repositório clonado e preciso alterar o nome do arquivo env-exemple para **.env** e com isso alterar os dados dentro.
 
@@ -90,4 +90,16 @@ Feito isso dentro da pasta **docs/sql** temos os scripts do banco de dados da ap
 Com as imagens do sistema criado no terminal do contêiner docker do PHP é preciso executar o comando abaixo para instalar
 as dependências do sistema.
 
-```php composer.phar install```
+```php composer install```
+
+Ao executar a aplicação e se der algum erro de permissão, execute os comandos abaixo dentro do container do nginx.
+
+``chown -R www-data:www-data /usr/share/nginx/html/storage /usr/share/nginx/html/bootstrap/cache
+``
+``chmod -R 775 /usr/share/nginx/html/storage /usr/share/nginx/html/bootstrap/cache``
+
+No windowns quando subir o container do MySql precisamos usar os comando abaixo para que a comunicação externa com o container funcione
+
+``ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+FLUSH PRIVILEGES;
+``
