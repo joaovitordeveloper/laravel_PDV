@@ -6,6 +6,9 @@ use App\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\ValidationRule;
 
+/**
+ * @author João Vitor Boltelho <developer.joaovitor@gmail.com>
+ */
 class UserRequest extends BaseRequest
 {
     /**
@@ -24,9 +27,9 @@ class UserRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:5|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'string', 'min:6', 'max:80'],
+            'data.name' => 'required|string|min:5|max:255',
+            'data.email' => 'required|email|unique:users,email',
+            'data.password' => ['required', 'string', 'min:6', 'max:80'],
         ];
     }
 
@@ -36,13 +39,13 @@ class UserRequest extends BaseRequest
     public function messages(): array
     {
         return [
-        'name.required' => 'O nome é obrigatório',
-        'name.min' => 'O nome deve ter no mínimo 5 caracteres',
-        'email.required' => 'O email é obrigatório',
-        'email.email' => 'O email deve ser válido',
-        'email.unique' => 'Esse email já está cadastrado',
-        'password.required' => 'A senha é obrigatória',
-        'password.min' => 'A senha deve ter no mínimo 6 caracteres',
-    ];
+            'name.required' => 'Name is required',
+            'name.min' => 'Name must be at least 5 characters long',
+            'email.required' => 'Email is required',
+            'email.email' => 'Invalid email format',
+            'email.unique' => 'This email address already exists',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be at least 6 characters long',
+        ];
     }
 }

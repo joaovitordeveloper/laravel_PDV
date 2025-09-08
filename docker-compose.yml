@@ -7,7 +7,7 @@ services:
         ports:
             - ${PORT_NGINX}:80
         volumes:
-            - ./www:/usr/share/nginx/html:delegated
+            - ./www:/usr/share/nginx/html:cached
             - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
         restart: always
     php:

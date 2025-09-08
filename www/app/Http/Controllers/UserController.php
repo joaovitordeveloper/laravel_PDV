@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\User;
-use App\Service\UserService;
+use Exception;
+use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\UserRequest;
 
+/**
+ * @author João Vitor Boltelho <developer.joaovitor@gmail.com>
+ */
 class UserController extends Controller
 {
     public function index()
@@ -23,22 +25,13 @@ class UserController extends Controller
      * @param UserRequest $request
      * @return JsonResponse
      */
-    public function create(UserRequest $request) :JsonResponse
+    public function create(UserRequest $request, UserService $userService) :JsonResponse
     {
         try {
-            $user = User::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-//ajustar mensagem de retorno de uma forma mais generia para todos os controllers
-            return response()->json([
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email
-            ], 201);
+            $userService->register($request);
+            return $this->getResponseJson('User created successfully!');
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return $this->getResponseJson($e->getMessage(), 400);
         }
     }
 
