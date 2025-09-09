@@ -8,5 +8,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::post('register', [UserController::class, 'create']);
-Route::post('register', [UserController::class, 'create'])->name('register.create');
+Route::post('register', [UserController::class, 'create']);
+Route::put('update', [UserController::class, 'update']);
+Route::delete('delete', [UserController::class, 'delete']);

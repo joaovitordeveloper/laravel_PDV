@@ -15,8 +15,10 @@ class BaseRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'message'   => 'Data inconsistency',
-            'data'      => $validator->errors()
+            'data' => [
+                'message'   => 'Data inconsistency',
+                'errors'      => $validator->errors()
+            ],
         ], 400));
     }
 }

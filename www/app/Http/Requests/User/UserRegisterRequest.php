@@ -2,13 +2,9 @@
 
 namespace App\Http\Requests\User;
 
-use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseRequest;
 
-/**
- * @author João Vitor Boltelho <developer.joaovitor@gmail.com>
- */
-class UserRequest extends BaseRequest
+class UserRegisterRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +21,9 @@ class UserRequest extends BaseRequest
      */
     public function rules(): array
     {
-        $id = $this->input('data.id');
-
         return [
             'data.name' => 'required|string|min:5|max:255',
-            'data.email' => ['required', 'email', Rule::unique('users', 'email')->ignore($id),],
+            'data.email' => 'required|email|unique:users,email',
             'data.password' => ['required', 'string', 'min:6', 'max:80'],
         ];
     }

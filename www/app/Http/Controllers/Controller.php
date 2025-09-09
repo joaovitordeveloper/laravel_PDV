@@ -12,15 +12,15 @@ abstract class Controller
     /**
      * Method that returns the JSON to the end-user
      *
-     * @param string $message
+     * @param array $content
      * @param integer $code
      * @return JsonResponse
      */
-    protected function getResponseJson(string $message, $code = 200) :JsonResponse
+    protected function getResponseJson(array $content, $code = 200) :JsonResponse
     {
         return response()->json([
             'data' => [
-                'message' => $message
+                $content
             ]
         ], $code);
     }
