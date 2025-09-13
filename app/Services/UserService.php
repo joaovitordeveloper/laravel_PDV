@@ -17,6 +17,16 @@ use App\Http\Requests\User\UserRegisterRequest;
 class UserService extends Service
 {
     /**
+     * Method to return all user
+     *
+     * @return array
+     */
+    public function selectAll()
+    {
+        return User::all();
+    }
+
+    /**
      * Method for user creation
      *
      * @param UserRegisterRequest $data
@@ -27,6 +37,7 @@ class UserService extends Service
         $data = $userRequest['data'];
         $user = User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -74,5 +85,26 @@ class UserService extends Service
         if (!$user->delete()) {
             throw new Exception('An error occurred while trying to remove the user.');
         }
+    }
+
+    /**
+     * Method to return user
+     *
+     * @param array $data
+     * @return array
+     */
+    public function search(array $data)
+    {
+        return User::query()
+            ->when(isset($data['name']), function ($query) use ($data) {
+                $query->where('name', 'like', '%' . $data['name'] . '%');
+            })
+            ->when(isset($data['username']), function ($query) use ($data) {
+                $query->where('username', 'like', '%' . $data['username'] . '%');
+            })
+            ->when(isset($data['email']), function ($query) use ($data) {
+                $query->where('email', $data['email']);
+            })
+            ->get();
     }
 }

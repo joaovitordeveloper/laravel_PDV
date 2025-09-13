@@ -23,6 +23,7 @@ class UserRegisterRequest extends BaseRequest
     {
         return [
             'data.name' => 'required|string|min:5|max:255',
+            'data.username' => 'required|string|min:5|max:25|unique:users,username',
             'data.email' => 'required|email|unique:users,email',
             'data.password' => ['required', 'string', 'min:6', 'max:80'],
         ];

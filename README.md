@@ -1,107 +1,61 @@
-# Instalação
-O sistema consiste em uma plataforma de gerenciamento de tarefas.
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Para utilizar a plataforma primeiro deve-se realizar um cadastro nela.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Cada um dos usuários pode criar tarefas no sistema, após criadas, as tarefas podem ser movidas de colunas
-utilizando o mouse.
+## About Laravel
 
-Em cada uma das tarefas pode-se clicar para ver os detalhes, fazer comentários e verificar o histórico.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-### O que foi utilizado?
-Para o desenvolvimento do sistema foi utilizado o Slim framework como base, para o gerenciamento do banco de dados
-foi utilizado o Doctrine e nas Views optei pela utilização do Twig.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Abaixo temos como ficou dividido a estrutura do projeto.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-![img.png](img.png)
+## Learning Laravel
 
-Dentro da pasta Http temos a divisão entre **api** e **site** a parte da **api** e responsável por receger requisições via post
-e redirecionar para os model respectivos que contem a regra do fluxo.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Já a pasta **site** fica por conta de receber requisições que tem como objetivo renderizar alguma view para o usuario.
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-Cada fluxo foi separado por pastas para ficar masi organizado.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-Dentro de app temos um arquivo chamado **App.php** essa classe e responsável por iniciar o sistema, realizando assim
-todas as configurações iniciais exigidas.
+## Laravel Sponsors
 
-Foi criado uma classe de mensagens dentro da pasta **Message** que fica responsável por concentrar as mensagens que serão
-retornadas ao usuário.
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-Para a utilização do doctrine da melhor forma foi criado dentro de **Repository** a classe pai dos repositórios **Repository.php**
-para que todos os repositórios possam extender dela para pegar os dados de conexão com o banco e utilizar o entityManager.
+### Premium Partners
 
-Os repositórios foram divididos cada um por pastas referentes aos fluxos.
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
-Na pasta **Entity** ficou o relacionamento de entidades do doctrine fazendo referencia com o banco de dados.
+## Contributing
 
-Foi utilizado Middleware para iniciar a sessão e verificar se o usuário esta logado no sistema.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-Na tela de tarefas na alteração de status das mesmas foi utilizado o recurso drag and drop (arrastar e soltar) com isso
-o usuário tem uma maior interação com o sistema alterando assim o status da tarefa após solta-la na nova coluna.
+## Code of Conduct
 
-Para que todos os usuarios possam sempre ver o quadro atualizado foi utilizado o eventsource que fica verificando sempre o ultimo
-Id na tabela de historico para que se houver alguma alteração atualizar o quadro.
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-Com isso todos os usuário sempre visualizam o quadro atualizado.
+## Security Vulnerabilities
 
-# Instalação & montagem do ambiente.
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-- É preciso clonar o progeto utilizando o comando abaixo.
+## License
 
-  - git clone https://github.com/p21joaovitor/desafio_tecnico.git
-
-### Montando o ambiente
-
-Com o ambiente clonado dentro de www/config é preciso criar um arquivo chamado **database.php** para conter as
-informações de conexão com o banco de dados.
-
-Segue abaixo a estrutura do arquivo.
-
-![img_1.png](img_1.png)
-
-**Altere os dados do arquivo .env que está dentro de www para os dados da sua conexão**
-
-Com o repositório clonado e preciso alterar o nome do arquivo env-exemple para **.env** e com isso alterar os dados dentro.
-
-- **CONTANER_NAME**: Se desejar e so trocar o nome que esta no arquivo para o nome desejado.
-- **PROJECT**: Manter como vem no arquivo.
-- **PORT_NGINX**: Caso queira coloque a porta de acesso de sua preferencia.
-- **PORT_NGINX_SSL**: Caso queira coloque a porta de acesso de sua preferencia.
-- **PORT_MYSQL**: Caso queira coloque a porta de acesso de sua preferencia.
-- **MYSQL_ROOT_PASSWORD=**: Senha root de acesso ao banco.
-- **MYSQL_DATABASE**: Nome do banco de dados
-
-**Caso tenha alterado o CONTAINER_NAME é preciso alterar tbm no arquivo default.conf na linha 51 no caminho config/nginx**
-
-Feito o ajuste do .env podemos executar o build do sistema.
-
-```docker composer build --no-cache```
-
-com o comando acima executado podemos subir o sistema executando o comando abaixo.
-
-```docker compose up -d --force-recreate```
-
-Feito isso dentro da pasta **docs/sql** temos os scripts do banco de dados da aplicação.
-
-**Execute o script em seu SGBD para que tenha todas as tabelas do sistema.**
-
-Com as imagens do sistema criado no terminal do contêiner docker do PHP é preciso executar o comando abaixo para instalar
-as dependências do sistema.
-
-```php composer install```
-
-Ao executar a aplicação e se der algum erro de permissão, execute os comandos abaixo dentro do container do nginx.
-
-``chown -R www-data:www-data /usr/share/nginx/html/storage /usr/share/nginx/html/bootstrap/cache
-``
-``chmod -R 775 /usr/share/nginx/html/storage /usr/share/nginx/html/bootstrap/cache``
-
-No windowns quando subir o container do MySql precisamos usar os comando abaixo para que a comunicação externa com o container funcione
-
-``ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
-FLUSH PRIVILEGES;
-``
-
-criar a chave de acesso php artisan key:generate
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

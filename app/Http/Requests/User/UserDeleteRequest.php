@@ -15,7 +15,6 @@ class UserDeleteRequest extends BaseRequest
      */
     public function rules(): array
     {
-        $id = $this->input('data.id');
         return [
             'data.id' => ['required', 'integer', Rule::exists('users', 'id'),]
         ];
