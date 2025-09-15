@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Exception;
 use App\Models\User;
-use App\Services\Service;
+use App\Services\BaseService;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\User\UserRequest;
 use App\Http\Requests\User\UserDeleteRequest;
@@ -14,7 +14,7 @@ use App\Http\Requests\User\UserRegisterRequest;
 /**
  * @author João Vitor Boltelho <developer.joaovitor@gmail.com>
  */
-class UserService extends Service
+class UserService extends BaseService
 {
     /**
      * Method to return all user

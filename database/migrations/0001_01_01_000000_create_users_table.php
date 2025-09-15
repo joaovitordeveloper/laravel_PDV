@@ -11,8 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('institutions', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('document', 14);
+            $table->tinyInteger('document_type');
+            $table->string('address', 255);
+            $table->string('complement', 255);
+            $table->integer('zip_code');
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('institution_id')->nullable()->constrained('institutions')->nullOnDelete();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
@@ -46,5 +58,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('institutions');
     }
 };
